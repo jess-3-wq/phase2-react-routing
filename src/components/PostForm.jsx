@@ -1,16 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 
 const PostForm = () => {
+  const [formData, setFormData] = useState({
+    title: "",
+    body: ""
+
+  })
+
+  const handleOnchange = (e) =>{
+    e.preventDefault()
+    let name = e.target.name
+    let value = e.target.value
+
+    console.log(`${name} : ${value}`)
+
+    setFormData({...formData, [name]: value})
+
+
+  }
+
+  console.log(formData)
+
+  const handleOnSubmit =(e) =>{
+    e.preventDefault()
+
+    fetch("http://localhost:4000/posts", {
+      method : "POST",
+      headers :{
+        "Content-Type": "application/json",
+        accept: "application/json"
+      },
+      body: JSON.stringify(formData)
+
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+
+    setFormData({
+      title:"",
+      body:""
+    })
+    
+  }
+
+
   return (
     <>
     <Navbar />
     <div className='post-form'>
         <div className='form'>
         <h2>Add New Post</h2>
-        <form>
-            <input type="text"  placeholder='Enter posts title..'/>
-            <input type="text" placeholder='Enter post body'/>
+        <form onSubmit={handleOnSubmit}>
+            <input
+             type="text"
+             name='title' 
+             value={formData.title} 
+             placeholder='Enter posts title..'
+             onChange={handleOnchange}
+              />
+
+            <input
+             type="text"
+             name='body'
+              value={formData.body}
+               placeholder='Enter post body'
+               onChange={handleOnchange}
+               />
+
             <input type='submit'/>
         </form>
         </div>
