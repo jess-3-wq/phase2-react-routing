@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import About from './components/About';
 import ErrorPage from './components/ErrorPage';
 import PostForm from './components/PostForm';
+import SinglePost from './components/SinglePost';
+import EditPost from './components/EditPost';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,16 @@ const router = createBrowserRouter([
   {
     path: "/add-post",
     element: <PostForm />
+  },
+  {
+    path: "/posts/:id",
+    element: <SinglePost />
+  },
+  {
+    path: "/edit-post/:id",
+    element: <EditPost />
   }
+  
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

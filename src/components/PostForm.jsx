@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
+import { useNavigate } from 'react-router-dom'
 
 const PostForm = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const PostForm = () => {
     body: ""
 
   })
+
+  let navigate = useNavigate()
 
   const handleOnchange = (e) =>{
     e.preventDefault()
@@ -17,7 +20,7 @@ const PostForm = () => {
 
     setFormData({...formData, [name]: value})
 
-
+    
   }
 
   console.log(formData)
@@ -43,6 +46,7 @@ const PostForm = () => {
       body:""
     })
     
+    navigate("/")
   }
 
 

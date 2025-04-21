@@ -55,6 +55,14 @@
 .form{
   padding: 5px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 47%;
+  border-radius: 5px;
+}
+.form input{
+  margin-bottom: 2px;
 }
 .navigation{
   display: flex;
